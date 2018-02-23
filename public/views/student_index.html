@@ -36,6 +36,13 @@
                     </a>
                 </li>
 
+                <li ng-class="{ active: isActive('metrics') }">
+                    <a ng-href="#/metrics/{{sid}}">
+                        <i class="glyphicon glyphicon-eye-open pull-right"></i>
+                        Metrics
+                    </a>
+                </li>
+
                 <li ng-class="{ active: isActive('courses') }">
                     <a ng-href="#/courses/{{sid}}">
                         <i class="glyphicon glyphicon-book pull-right"></i>
