@@ -17,6 +17,10 @@ studentApp
             templateUrl: '/public/views/student/student_home.html',
             controller: 'StudentHomeController'
         })
+        .when('/metrics/:sid', {
+            templateUrl: '/public/views/student/student_matrics.html',
+            controller: 'StudentHomeController'
+        })
         .when('/courses/:sid', {
             templateUrl: '/public/views/student/student_courses.html',
             controller: 'StudentCoursesController'
