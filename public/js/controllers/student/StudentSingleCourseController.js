@@ -3,8 +3,13 @@ angular.module('studentApp')
 
 
         var path = $location.path().split('/');
+        console.log("studentApp path is")
+        console.log($location.path())
+        console.log(path)
         $scope.courseID = path[2];
         $scope.sid = path[3];
+        console.log("sid is:");
+        console.log(path[3]);
 
         var sid = path[3];
         var courseID = path[2];
@@ -16,7 +21,7 @@ angular.module('studentApp')
             assignments : []
         };
         $scope.enrollButtonToShow = true;
-        $scope.leaderboard = []
+        $scope.leaderboard = [];
 
         $http.get("coursesEnrolled/student/" + sid)
         .then(function(response) {
@@ -37,8 +42,10 @@ angular.module('studentApp')
         function prepareChartConfig (response) {
             let categories = ['Abstraction','Parallelization','Logic','Synchronization','FlowControl','UserInteractivity','DataRepresentation'];
             let seriesArray = [];
-
+            console.log("in prepare Chart Config");
             if (response) {
+                console.log("in response");
+                console.log(response);
                 response.map ((singleAssignment) => {
                     if (singleAssignment.results) {
                         let data = categories.map ((singleCategory) => {
@@ -102,6 +109,8 @@ angular.module('studentApp')
 
         function putDataInScope (response) {
             console.log("trying to put data in scope")
+            console.log(response.data);
+            console.log($scope);
             if (response.status == '403') {
                         $window.location.href = '/public/views/error.html';
                 } else {
@@ -110,7 +119,15 @@ angular.module('studentApp')
 
                         $scope.enrollButtonToShow = !response.data.isEnrolled;
 
-                        $scope.numberOfAssignmentsDone = getNumberOfAssignmentsDonePercentage (response.data);
+                        // $scope.numberOfAssignmentsDone = getNumberOfAssignmentsDonePercentage (response.data);
+
+                        if(!$scope.obj_progress){
+                            $scope.obj_progress = 50;
+                        }
+                        if(!$scope.val_progress){
+                            $scope.val_progress = 50;
+                        }
+
                         //static
                         $scope.course.resources = [
                             {'resourceID': 1, 'resourceName': 'Resource 1', link:"https://www.youtube.com/watch?v=Mv9NEXX1VHc"},
@@ -118,6 +135,12 @@ angular.module('studentApp')
                             {'resourceID': 3, 'resourceName': 'Resource 3', link:"https://www.youtube.com/watch?v=Mv9NEXX1VHc"},
                             {'resourceID': 4, 'resourceName': 'Resource 4', link:"https://www.youtube.com/watch?v=Mv9NEXX1VHc"}
                         ];
+                        //static
+                        // $scope.course.ctConcepts = [
+                        //     {},
+                        //     {},
+                        //     {}
+                        // ]
 
                         $scope.chartConfig = prepareChartConfig (response.data.assignments);
                     }
@@ -134,10 +157,10 @@ angular.module('studentApp')
 
                 $scope.leaderboard = response.data;
 
-
             }
         });
 
+        // original
         $scope.onClickEnrollButton  = function () {
             $http.post("enroll/" + courseID + '/student/' + sid)
             .then(function (response) {
@@ -152,6 +175,23 @@ angular.module('studentApp')
             })
 
         }
+
+
+        // $scope.onClickEnrollButton  = function () {
+        //     console.log("inbuttonclick");
+        //     $http.get("../../staticData/steven-student.json")
+        //         .then(function (response) {
+        //
+        //             return $http.get("../../staticData/steven-student.json");
+        //
+        //         }).then(putDataInScope)
+        //
+        //         .catch (function (error) {
+        //
+        //             console.log('error');
+        //         })
+        //
+        // }
 
 
 
@@ -171,4 +211,9 @@ function getNumberOfAssignmentsDonePercentage (data) {
     }
 
     return Math.round(numberOfAssignmentsDone/data.assignments.length*100);
+}
+
+function getVALprogress(data) {
+    var numberof
+
 }

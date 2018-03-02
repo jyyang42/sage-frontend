@@ -208,8 +208,8 @@ angular.module('studentApp')
                     $scope.sid = $routeParams.sid;
                     $scope.barDataLoaded = false;
                     $scope.spiderwebDataLoaded = false;
-                    //console.log(response.data);
-                    //console.log($scope);
+                    console.log(response.data);
+                    console.log($scope);
                     $scope.courses = response.data.courses;
                 });
         }]);
