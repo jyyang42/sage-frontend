@@ -31,7 +31,7 @@
 		<!--</div>-->
 
 
-	<h3> Statistics </h3>
+	<h3> Quest Progress </h3>
 	<div ng-if="!enrollButtonToShow">
 		<h4> Objective Progress </h4>
 		<div  class="progress">
@@ -39,13 +39,16 @@
 				{{obj_progress}}%
 			</div>
 		</div>
+		<p> You have completed {{quest_progress.num_obj}} Quest Objectives worth {{quest_progress.num_opoi}} points out of {{quest_progress.num_obj_total}} Quest Objectives worth {{quest_progress.num_opoi_total}} points. </p>
+
 		<h4> VAL Progress </h4>
 		<div  class="progress">
 			<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{val_progress}}%;">
 				{{val_progress}}%
 			</div>
-
 		</div>
+		<p> You have completed {{quest_progress.num_val}} Quest Objectives worth {{quest_progress.num_vpoi}} points out of {{quest_progress.num_val_total}} Quest Objectives worth {{quest_progress.num_vpoi_total}} points. </p>
+
 		<highchart id="chart1" config="chartConfig"></highchart>
 
 	</div>

@@ -1,18 +1,4 @@
 angular.module('studentApp')
-
-    .directive('hcChart_default', [ '$window', function ($window) {
-        return {
-            restrict: 'E',
-            template: '<div></div>',
-            scope: {
-                options: '='
-            },
-            link: function (scope, element) {
-                var chart = Highcharts.chart(element[0], scope.options);
-            }
-        };
-    }])
-
 // Directive for generic chart, pass in chart options
     .directive('hcBarChart', [ '$window', function ($window) {
         return {
@@ -162,21 +148,6 @@ angular.module('studentApp')
     .controller('StudentOverviewController', ['$rootScope', '$scope', '$window', '$http', "$routeParams", "$location",
         function ($rootScope, $scope, $window, $http, $routeParams, $location) {
             console.log("testing_overview");
-
-            $scope.chartOptions_default = {
-                title: {
-                    text: 'Temperature data'
-                },
-                xAxis: {
-                    categories: ['Abstraction', 'Parallelization', 'Logic', 'Synchronization', 'Flow Control',
-                        'User Interactivity', 'Data Representation']
-                },
-
-                series: [{
-                    data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6]
-                }]
-            };
-
             $scope.rightVisible = false;
 
             $scope.close = function () {
@@ -211,11 +182,6 @@ angular.module('studentApp')
                 }
                 $scope.barDataLoaded = true;
 
-                // $scope.spiderwebData = [{
-                //     name:['Abstraction', 'Parallelization', 'Logic', 'Synchronization', 'Flow Control',
-                //     'User Interactivity', 'Data Representation'],
-                //     data: [20,20,20,20,20,20,20]
-                // }];
 
                 $scope.spiderwebData = [];
                 for (i = 0; i < $scope.student.number_of_courses; i++) {
@@ -234,7 +200,6 @@ angular.module('studentApp')
 
 
 
-
             $http.get("/stats/students/" + $routeParams.sid)
                 .then(function (response) {
                     $scope.statuscode = response.status;
@@ -248,4 +213,3 @@ angular.module('studentApp')
                     $scope.courses = response.data.courses;
                 });
         }]);
-

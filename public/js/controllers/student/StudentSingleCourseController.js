@@ -1,6 +1,19 @@
 angular.module('studentApp')
     .controller('StudentSingleCourseController',['$window', '$location','$scope', '$http', function($window, $location, $scope, $http) {
 
+        $scope.quest_progress = {
+            num_obj : 5,
+            num_opoi : 40,
+            num_obj_total : 7,
+            num_opoi_total : 60,
+
+            num_val : 3,
+            num_vpoi : 33,
+            num_val_total : 6,
+            num_vpoi_total : 60
+        }
+
+
 
         var path = $location.path().split('/');
         console.log("studentApp path is")
@@ -122,11 +135,13 @@ angular.module('studentApp')
                         // $scope.numberOfAssignmentsDone = getNumberOfAssignmentsDonePercentage (response.data);
 
                         if(!$scope.obj_progress){
-                            $scope.obj_progress = 50;
+                            $scope.obj_progress = $scope.quest_progress.num_opoi/$scope.quest_progress.num_opoi_total*100;
                         }
                         if(!$scope.val_progress){
-                            $scope.val_progress = 50;
+                            $scope.val_progress = $scope.quest_progress.num_vpoi/$scope.quest_progress.num_vpoi_total*100;
                         }
+
+
 
                         //static
                         $scope.course.resources = [
