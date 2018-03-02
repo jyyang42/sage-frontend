@@ -11,7 +11,7 @@ angular.module('studentApp')
             num_vpoi : 33,
             num_val_total : 6,
             num_vpoi_total : 60
-        }
+        };
 
 
 
@@ -133,6 +133,14 @@ angular.module('studentApp')
                         $scope.enrollButtonToShow = !response.data.isEnrolled;
 
                         // $scope.numberOfAssignmentsDone = getNumberOfAssignmentsDonePercentage (response.data);
+
+                        // $http.get("./test.json")
+                        // $http.get("http://localhost:3001/staticdata")
+                        // $http.get("../../../staticData/Steven_progress.json")
+                        //     .then(function(data){
+                        //         $scope.staticprogress = data;
+                        //         console.log($scope.staticprogress)
+                        //     });
 
                         if(!$scope.obj_progress){
                             $scope.obj_progress = $scope.quest_progress.num_opoi/$scope.quest_progress.num_opoi_total*100;
