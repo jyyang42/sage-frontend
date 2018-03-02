@@ -17,18 +17,39 @@
     		{{myCourse.desc}}
     	</div>
 
-    <h3> Statistics </h3>
-		<div ng-if="!enrollButtonToShow">
-			<div  class="progress">
-		        <div>
-		        class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{numberOfAssignmentsDone}}%;">
-		            {{numberOfAssignmentsDone}}%
-		        </div>
+    <!--<h3> Statistics </h3>-->
+		<!--<div ng-if="!enrollButtonToShow">-->
+			<!--<div  class="progress">-->
+		        <!--<div>-->
+		        <!--class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{numberOfAssignmentsDone}}%;">-->
+		            <!--{{numberOfAssignmentsDone}}%-->
+		        <!--</div>-->
 
-		    </div>
-		    <highchart id="chart1" config="chartConfig"></highchart>
+		    <!--</div>-->
+		    <!--<highchart id="chart1" config="chartConfig"></highchart>-->
+
+		<!--</div>-->
+
+
+	<h3> Statistics </h3>
+	<div ng-if="!enrollButtonToShow">
+		<h4> Objective Progress </h4>
+		<div  class="progress">
+			<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{obj_progress}}%;">
+				{{obj_progress}}%
+			</div>
+		</div>
+		<h4> VAL Progress </h4>
+		<div  class="progress">
+			<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{val_progress}}%;">
+				{{val_progress}}%
+			</div>
 
 		</div>
+		<highchart id="chart1" config="chartConfig"></highchart>
+
+	</div>
+
 
 
 
